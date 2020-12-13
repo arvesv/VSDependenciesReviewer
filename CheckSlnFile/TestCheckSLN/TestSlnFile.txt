@@ -1,0 +1,29 @@
+﻿# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassClassicDotNet", "ClassClassicDotNet\ClassClassicDotNet.csproj", "{51D71D6E-FA2E-4A58-A529-4916DA598245}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassNetCore", "ClassNetCore\ClassNetCore.csproj", "{179F8F6E-0757-4A11-9C8E-1F717EAA5C11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51D71D6E-FA2E-4A58-A529-4916DA598245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D71D6E-FA2E-4A58-A529-4916DA598245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D71D6E-FA2E-4A58-A529-4916DA598245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D71D6E-FA2E-4A58-A529-4916DA598245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{179F8F6E-0757-4A11-9C8E-1F717EAA5C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{179F8F6E-0757-4A11-9C8E-1F717EAA5C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{179F8F6E-0757-4A11-9C8E-1F717EAA5C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{179F8F6E-0757-4A11-9C8E-1F717EAA5C11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2391325A-8DEA-4BDF-ACA8-E6A350CFCCCD}
+	EndGlobalSection
+EndGlobal
