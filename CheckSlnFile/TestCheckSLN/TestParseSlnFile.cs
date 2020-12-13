@@ -14,9 +14,7 @@ namespace TestCheckSLN
 
         public TestParseSlnFile()
         {
-            var text = File.ReadAllLines(Path.Join(GetTestFolder(), "TestSlnFile.txt"));
-
-            parsedProjects = ParserSolutionFile.GetProjects(text);
+            parsedProjects = ParserSolutionFile.GetProjects("TestSlnFile.txt");
         }
 
         private string GetTestFolder()
@@ -36,7 +34,15 @@ namespace TestCheckSLN
             Assert.Collection(parsedProjects,
                 project => Assert.Equal("ClassClassicDotNet", project.Name),
                 project => Assert.Equal("ClassNetCore", project.Name));
-
         }
+
+        [Fact]
+        public void TestNameOfProjectPathsInSolutionFile()
+        {
+            Assert.Collection(parsedProjects,
+                project => Assert.Equal(@"ClassClassicDotNet\ClassClassicDotNet.csproj", project.Path),
+                project => Assert.Equal(@"ClassNetCore\ClassNetCore.csproj", project.Path));
+        }
+
     }
 }

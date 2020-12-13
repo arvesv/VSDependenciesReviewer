@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -24,12 +25,15 @@ namespace CheckSlnFile
         }
 
 
-        public static IEnumerable<Project> GetProjects(string[] solutionFile)
+        public static IEnumerable<Project> GetProjects(string solutionFile)
         {
-            var x = solutionFile
+            var lines = File.ReadAllLines(solutionFile);
+            var directory = Path.GetDirectoryName(solutionFile);
+
+            var x = lines
                 .Where(line => line.Contains(CSharpProjectGuid))
                 .Select(line => line.Substring(53).Split(','))
-                .Select(x => new Project { Name = TrimName(x[0]), Path = x[1]})
+                .Select(x => new Project { Name = TrimName(x[0]), Path = TrimName(x[1])})
                 .AsEnumerable<Project>();
 
             return x;
