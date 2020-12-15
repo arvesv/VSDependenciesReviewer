@@ -7,9 +7,9 @@ namespace CheckSlnFile
 {
     public class Project
     {
+        public Guid Guid;
         public string Name;
         public string Path;
-        public Guid Guid;
     }
 
     public class ParserSolutionFile
@@ -34,7 +34,11 @@ namespace CheckSlnFile
             var x = lines
                 .Where(line => line.Contains(CSharpProjectGuid))
                 .Select(line => line.Substring(53).Split(','))
-                .Select(lineSplit => new Project { Name = TrimName(lineSplit[0]), Path = Path.Join(directory, TrimName(lineSplit[1])), Guid = ParseGuid(lineSplit[2])})
+                .Select(lineSplit => new Project
+                {
+                    Name = TrimName(lineSplit[0]), Path = Path.Join(directory, TrimName(lineSplit[1])),
+                    Guid = ParseGuid(lineSplit[2])
+                })
                 .AsEnumerable();
 
             return x;
