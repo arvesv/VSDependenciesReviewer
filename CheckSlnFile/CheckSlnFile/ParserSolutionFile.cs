@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 
 namespace CheckSlnFile
 {
@@ -11,8 +9,8 @@ namespace CheckSlnFile
     {
         public string Name;
         public string Path;
+        public Guid Guid;
     }
-
 
     public class ParserSolutionFile
     {
@@ -21,9 +19,12 @@ namespace CheckSlnFile
         private static string TrimName(string name)
         {
             return name.Replace('"', ' ').Trim();
-
         }
 
+        private static Guid ParseGuid(string s)
+        {
+            return new Guid(TrimName(s));
+        }
 
         public static IEnumerable<Project> GetProjects(string solutionFile)
         {
@@ -33,12 +34,10 @@ namespace CheckSlnFile
             var x = lines
                 .Where(line => line.Contains(CSharpProjectGuid))
                 .Select(line => line.Substring(53).Split(','))
-                .Select(x => new Project { Name = TrimName(x[0]), Path = TrimName(x[1])})
-                .AsEnumerable<Project>();
+                .Select(lineSplit => new Project { Name = TrimName(lineSplit[0]), Path = Path.Join(directory, TrimName(lineSplit[1])), Guid = ParseGuid(lineSplit[2])})
+                .AsEnumerable();
 
             return x;
         }
-
-
     }
 }
