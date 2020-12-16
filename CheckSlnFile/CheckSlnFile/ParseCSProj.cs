@@ -9,23 +9,24 @@ namespace CheckSlnFile
         public Guid Guid;
         public string OutPutFileName;
         public IList<string> References;
+        public string ProjectFile;
 
-        public ParseCsProj(string projectfile)
+        public ParseCsProj(string projectFile)
         {
+            ProjectFile = projectFile;
             var doc = new XmlDocument();
-            doc.Load(projectfile);
+            doc.Load(projectFile);
 
-            var nsmgr = new XmlNamespaceManager(doc.NameTable);
-            nsmgr.AddNamespace("ab", "http://schemas.microsoft.com/developer/msbuild/2003");
-            var d = doc.SelectSingleNode("//ab:ProjectGuid", nsmgr);
-
+            var nsMgr = new XmlNamespaceManager(doc.NameTable);
+            nsMgr.AddNamespace("ab", "http://schemas.microsoft.com/developer/msbuild/2003");
+            var d = doc.SelectSingleNode("//ab:ProjectGuid", nsMgr);
 
             Guid = Guid.Parse(d.InnerText);
 
-            var name = doc.SelectSingleNode("//ab:AssemblyName", nsmgr);
+            var name = doc.SelectSingleNode("//ab:AssemblyName", nsMgr);
             OutPutFileName = name.FirstChild.Value.ToLower();
 
-            var nod = doc.SelectNodes("//ab:Reference", nsmgr);
+            var nod = doc.SelectNodes("//ab:Reference", nsMgr);
             References = new string[nod.Count];
 
             for (var i = 0; i < References.Count; i++) References[i] = nod[i].Attributes[0].Value.ToLower();
